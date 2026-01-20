@@ -18,14 +18,23 @@ document.addEventListener('DOMContentLoaded', function() {
         modalProgress: document.getElementById('modalProgress')
     };
     
-    // API Configuration
+    // ============ UPDATE THIS: Auto-detect API URL ============
     const API = {
-        BASE_URL: 'http://localhost:3000/api',
+        // Auto-detect if we're on localhost or production
+        BASE_URL: window.location.hostname.includes('localhost') 
+            ? 'http://localhost:3000/api' 
+            : '/api',  // When served from same server on Render
+        
         ENDPOINTS: {
             STATS: '/stats',
             SUBMIT: '/contacts'
         }
     };
+    
+    // Log API URL for debugging
+    console.log('🌐 API Base URL:', API.BASE_URL);
+    console.log('📍 Current Hostname:', window.location.hostname);
+    // ========================================================
     
     // Load initial stats
     loadStats();
@@ -58,6 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify(formData)
             });
             
+            // Check if response is OK
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
             const result = await response.json();
             
             if (result.success) {
@@ -73,8 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Error: ' + result.error);
             }
         } catch (error) {
-            alert('Network error. Please try again.');
-            console.error('Error:', error);
+            console.error('Submission error:', error);
+            alert('Network error. Please try again. Check console for details.');
         } finally {
             // Reset button
             submitBtn.disabled = false;
@@ -91,6 +105,12 @@ document.addEventListener('DOMContentLoaded', function() {
     async function loadStats() {
         try {
             const response = await fetch(`${API.BASE_URL}${API.ENDPOINTS.STATS}`);
+            
+            // Check if response is OK
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
             const data = await response.json();
             
             if (data.success) {
@@ -98,6 +118,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.log('Stats load error:', error);
+            // Show error in UI for debugging
+            elements.progressPercentage.textContent = 'Error loading';
+            elements.currentCount.textContent = '?';
         }
     }
     
@@ -163,4 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Auto-refresh stats every 30 seconds
     setInterval(loadStats, 30000);
+    
+    // Debug info
+    console.log('✅ Frontend loaded successfully');
+    console.log('🔄 Auto-refresh enabled: 30 seconds');
 });

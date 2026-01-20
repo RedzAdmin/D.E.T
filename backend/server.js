@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 
-// server.js - Replace the CONFIG object at the top
+// CONFIG with environment variables
 const CONFIG = {
     PORT: process.env.PORT || 3000,
     BATCH_TARGET: parseInt(process.env.BATCH_TARGET) || 50,
@@ -30,6 +30,13 @@ const DATA_FILES = {
     contacts: path.join(__dirname, 'contacts.json'),
     batches: path.join(__dirname, 'batches.json')
 };
+
+// ============ ADD THIS: Check if running on Render ============
+const isProduction = process.env.NODE_ENV === 'production';
+const FRONTEND_PATH = isProduction 
+    ? path.join(__dirname, '../frontend')  // Render structure
+    : path.join(__dirname, '../frontend'); // Local structure
+// ===============================================================
 
 // Initialize files
 const initializeFiles = async () => {
@@ -96,11 +103,33 @@ const sendVCFEmail = async (email, vcfContent, batchId) => {
     }
 };
 
-// Middleware
+// ==================== MIDDLEWARE ====================
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// ==================== ADD THIS: Serve Frontend ====================
+// Serve static files (CSS, JS, images)
+app.use(express.static(FRONTEND_PATH));
+
+// Serve specific frontend files
+app.get('/', (req, res) => {
+    res.sendFile(path.join(FRONTEND_PATH, 'index.html'));
+});
+
+app.get('/style.css', (req, res) => {
+    res.sendFile(path.join(FRONTEND_PATH, 'style.css'));
+});
+
+app.get('/script.js', (req, res) => {
+    res.sendFile(path.join(FRONTEND_PATH, 'script.js'));
+});
+
+app.get('/config.js', (req, res) => {
+    res.sendFile(path.join(FRONTEND_PATH, 'config.js'));
+});
+// ====================================================
+
+// ==================== API ROUTES ====================
 
 // Get current batch stats
 app.get('/api/stats', async (req, res) => {
@@ -259,6 +288,20 @@ app.post('/api/test-email', async (req, res) => {
     }
 });
 
+// ==================== CATCH-ALL ROUTE ====================
+// This must be LAST, after all other routes
+app.get('*', (req, res) => {
+    // Don't interfere with API routes
+    if (req.path.startsWith('/api/')) {
+        res.status(404).json({ success: false, error: 'API endpoint not found' });
+        return;
+    }
+    
+    // Serve index.html for all other routes (for React/Vue routing if you add it later)
+    res.sendFile(path.join(FRONTEND_PATH, 'index.html'));
+});
+// ========================================================
+
 // Initialize and start server
 const startServer = async () => {
     try {
@@ -274,10 +317,9 @@ const startServer = async () => {
         📍 Port: ${CONFIG.PORT}
         🎯 Batch Target: ${CONFIG.BATCH_TARGET}
         📧 Email Ready: ${CONFIG.EMAIL_USER ? 'YES' : 'NO'}
+        📁 Frontend Path: ${FRONTEND_PATH}
+        🌐 Environment: ${isProduction ? 'PRODUCTION' : 'DEVELOPMENT'}
         ──────────────────────────────────
-        ⚠️  To enable email sending:
-        1. Update EMAIL_USER and EMAIL_PASS in server.js
-        2. Use Gmail App Password (not regular password)
         `);
     });
 };

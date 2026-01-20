@@ -1,20 +1,20 @@
-# render.yaml - FIXED VERSION
 services:
   - type: web
     name: det-contact-gain
     env: node
     buildCommand: cd backend && npm install
     startCommand: cd backend && node server.js
+    rootDirectory: .  # Important: Set to root directory
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 3000
+        value: 10000  # Render uses 10000 for free tier
       - key: EMAIL_USER
         value: gozieezeh2005@gmail.com
       - key: EMAIL_PASS
         value: dvus snub kqck wdbg
       - key: EMAIL_FROM
-        value: D.E.T Contact Gain <gozieezeh2005@gmail.com>  # NO QUOTES!
+        value: D.E.T Contact Gain <gozieezeh2005@gmail.com>
       - key: BATCH_TARGET
         value: 50
