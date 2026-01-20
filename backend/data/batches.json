@@ -1,0 +1,12 @@
+{
+  "currentBatch": {
+    "id": "DET-BATCH-001",
+    "name": "D.E.T Launch Batch",
+    "target": 50,
+    "current": 0,
+    "status": "ACTIVE",
+    "startDate": "2024-01-01T00:00:00.000Z",
+    "contacts": []
+  },
+  "completedBatches": []
+}

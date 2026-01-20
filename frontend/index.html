@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.E.T CONTACT GAIN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://whatsapp.com/channel/your-channel-id" target="_blank" class="floating-btn whatsapp-btn animate__animated animate__pulse animate__infinite">
+        <i class="fab fa-whatsapp"></i>
+        <span class="btn-tooltip">Join WhatsApp Channel</span>
+    </a>
+
+    <!-- Floating GitHub Button -->
+    <a href="https://github.com/yourusername" target="_blank" class="floating-btn github-btn">
+        <i class="fab fa-github"></i>
+        <span class="btn-tooltip">Follow on GitHub</span>
+    </a>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <h1 class="logo">
+                    <span class="logo-text">D.E.T</span>
+                    <span class="logo-sub">CONTACT GAIN</span>
+                </h1>
+            </div>
+            <div class="tagline">
+                <p>Join Batch • Get Contacts • Grow Network</p>
+            </div>
+        </header>
+
+        <!-- Current Batch Info -->
+        <div class="batch-info">
+            <div class="batch-header">
+                <h2><i class="fas fa-layer-group"></i> CURRENT BATCH</h2>
+                <div class="batch-stats">
+                    <span class="stat"><i class="fas fa-users"></i> Target: <span id="targetCount">50</span></span>
+                    <span class="stat"><i class="fas fa-check-circle"></i> Collected: <span id="currentCount">0</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <div class="progress-header">
+                <h3><i class="fas fa-chart-line"></i> Batch Progress</h3>
+                <div class="count-display">
+                    <span class="current-count" id="progressCurrent">0</span>
+                    <span class="separator">/</span>
+                    <span class="total-count" id="progressTarget">50</span>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressPercentage">0%</span> Complete
+                </div>
+            </div>
+            
+            <div class="progress-details">
+                <div class="detail-item">
+                    <i class="fas fa-hourglass-half"></i>
+                    <span>Remaining: <span id="remainingCount">50</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form - SIMPLIFIED! -->
+        <div class="form-section">
+            <div class="form-header">
+                <h2><i class="fas fa-user-plus"></i> Join This Batch</h2>
+                <p class="form-subtitle">Enter your details. When batch is full, you'll get all contacts as VCF file</p>
+            </div>
+
+            <form id="contactForm" class="contact-form">
+                <!-- ONLY 3 FIELDS NEEDED -->
+                <div class="form-group">
+                    <label for="fullName">
+                        <i class="fas fa-user"></i> Full Name *
+                    </label>
+                    <input type="text" id="fullName" name="fullName" 
+                           placeholder="Enter your full name" required
+                           class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Number *
+                    </label>
+                    <input type="tel" id="phone" name="phone" 
+                           placeholder="+2347030626048" 
+                           pattern="^\+[0-9]{10,15}$" required
+                           class="form-input">
+                    <small class="hint">Include country code (e.g., +234 for Nigeria)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i> Email Address *
+                    </label>
+                    <input type="email" id="email" name="email" 
+                           placeholder="your.email@example.com" required
+                           class="form-input">
+                    <small class="hint">VCF file will be sent here when batch is complete</small>
+                </div>
+
+                <div class="terms-section">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span class="checkmark"></span>
+                        <span class="terms-text">
+                            I understand that when this batch reaches 50 contacts, 
+                            I'll receive a VCF file containing all names and WhatsApp numbers via email.
+                        </span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span class="btn-text">Join Batch</span>
+                        <div class="btn-loader" id="btnLoader">
+                            <div class="loader-spinner"></div>
+                        </div>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- How It Works - UPDATED -->
+        <div class="instructions-section">
+            <h3><i class="fas fa-cogs"></i> How It Works</h3>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h4>Submit Details</h4>
+                    <p>Enter your name, WhatsApp number, and email</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <h4>Batch Collects</h4>
+                    <p>We collect until we reach 50 participants</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <h4>VCF Generated</h4>
+                    <p>System creates VCF file with all names & WhatsApp numbers</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">4</div>
+                    <h4>Email Sent</h4>
+                    <p>VCF file sent to your email for easy contact import</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-section">
+            <h3><i class="fas fa-handshake"></i> Connect With CodeBreaker</h3>
+            <div class="social-links">
+                <a href="https://whatsapp.com/channel/0029Vb70IdY60eBmvtGRT00R" target="_blank" class="social-link whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Join WhatsApp Channel</span>
+                </a>
+                <a href="https://github.com/RedzAdmin" target="_blank" class="social-link github">
+                    <i class="fab fa-github"></i>
+                    <span>Follow on GitHub</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Watermark -->
+        <div class="watermark">
+            <span>Made by <strong>CODEBREAKER</strong></span>
+        </div>
+
+        <!-- Success Modal -->
+        <div class="modal" id="successModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fas fa-check-circle success-icon"></i>
+                    <h3>Successfully Joined!</h3>
+                </div>
+                <div class="modal-body">
+                    <p>You've been added to the current batch.</p>
+                    <p>When we reach 50 participants, you'll receive a VCF file with all contacts via email.</p>
+                    <div class="modal-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>Batch Progress: <span id="modalProgress">0/50</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn" id="closeModal">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

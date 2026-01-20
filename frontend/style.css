@@ -1,0 +1,708 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #6a11cb;
+    --secondary: #2575fc;
+    --accent: #ff0080;
+    --dark: #121212;
+    --light: #ffffff;
+    --success: #00d68f;
+    --danger: #ff3d71;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a, var(--dark));
+    color: var(--light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Simplified Background */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0.1;
+}
+
+/* Floating Buttons - Fixed Position */
+.floating-btn {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px currentColor;
+}
+
+.floating-btn .btn-tooltip {
+    position: absolute;
+    right: 70px;
+    background: var(--dark);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.floating-btn:hover .btn-tooltip {
+    opacity: 1;
+    visibility: visible;
+    right: 80px;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    bottom: 30px;
+    right: 30px;
+}
+
+.github-btn {
+    background: #333;
+    bottom: 110px;
+    right: 30px;
+}
+
+/* Main Container */
+.container {
+    max-width: 600px; /* Reduced width for better focus */
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+.logo {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo-text {
+    display: block;
+    font-weight: 900;
+    font-size: 3rem;
+}
+
+.logo-sub {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin-top: -10px;
+}
+
+.tagline p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 10px;
+}
+
+/* Batch Info */
+.batch-info {
+    background: var(--glass);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.batch-header {
+    text-align: center;
+}
+
+.batch-header h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.batch-stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Progress Section */
+.progress-section {
+    background: var(--glass);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.progress-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+}
+
+.count-display {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.current-count {
+    color: var(--accent);
+}
+
+.separator {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.total-count {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Progress Bar */
+.progress-container {
+    margin: 25px 0;
+}
+
+.progress-track {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 6px;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.progress-details {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.detail-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/* Form Section - SIMPLIFIED LAYOUT */
+.form-section {
+    background: var(--glass);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.form-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Form Elements - FIXED LAYOUT */
+.contact-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(106, 17, 203, 0.3);
+}
+
+.hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Terms Section */
+.terms-section {
+    margin: 25px 0;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    cursor: pointer;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.checkbox-container input {
+    display: none;
+}
+
+.checkmark {
+    min-width: 22px;
+    height: 22px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.terms-text {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* Submit Button */
+.form-actions {
+    text-align: center;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 180px;
+    justify-content: center;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(106, 17, 203, 0.4);
+}
+
+.btn-loader {
+    display: none;
+}
+
+.loader-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Instructions */
+.instructions-section {
+    background: var(--glass);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.instructions-section h3 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.step {
+    text-align: center;
+    padding: 20px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 auto 15px;
+}
+
+.step h4 {
+    margin: 15px 0 10px;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.step p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Social Section */
+.social-section {
+    text-align: center;
+    padding: 25px;
+    background: var(--glass);
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-section h3 {
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+}
+
+.social-link.whatsapp {
+    background: #25D366;
+}
+
+.social-link.github {
+    background: #333;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Watermark */
+.watermark {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+.watermark strong {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--dark);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.success-icon {
+    font-size: 3rem;
+    color: var(--success);
+    margin-bottom: 15px;
+}
+
+.modal-header h3 {
+    font-size: 1.8rem;
+    margin: 10px 0;
+}
+
+.modal-body {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.modal-body p {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-stats {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.modal-footer {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.modal-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        max-width: 100%;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .logo-text {
+        font-size: 2.5rem;
+    }
+    
+    .logo-sub {
+        font-size: 1.2rem;
+    }
+    
+    .steps-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .floating-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .whatsapp-btn {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .github-btn {
+        bottom: 85px;
+        right: 20px;
+    }
+    
+    .form-section, .progress-section, .instructions-section, .social-section {
+        padding: 20px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .batch-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .social-link {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}

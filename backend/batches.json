@@ -1,0 +1,29 @@
+{
+  "currentBatch": {
+    "id": "DET-BATCH-001",
+    "name": "D.E.T Launch Batch",
+    "target": 50,
+    "current": 1,
+    "status": "ACTIVE",
+    "startDate": "2026-01-20T01:41:25.967Z",
+    "contacts": [
+      {
+        "id": "1768873307213",
+        "email": "mbanemew9@gmail.com",
+        "name": "wealth mbaneme"
+      }
+    ]
+  },
+  "allContacts": [
+    {
+      "id": "1768873307213",
+      "fullName": "wealth mbaneme",
+      "phone": "+2347030626048",
+      "email": "mbanemew9@gmail.com",
+      "batchId": "DET-BATCH-001",
+      "joinedAt": "2026-01-20T01:41:47.213Z",
+      "vcfSent": false
+    }
+  ],
+  "completedBatches": []
+}
