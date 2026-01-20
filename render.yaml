@@ -1,3 +1,4 @@
+# render.yaml - FIXED VERSION
 services:
   - type: web
     name: det-contact-gain
@@ -14,6 +15,6 @@ services:
       - key: EMAIL_PASS
         value: dvus snub kqck wdbg
       - key: EMAIL_FROM
-        value: '"D.E.T Contact Gain" <gozieezeh2005@gmail.com>'
+        value: D.E.T Contact Gain <gozieezeh2005@gmail.com>  # NO QUOTES!
       - key: BATCH_TARGET
         value: 50
